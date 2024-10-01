@@ -1,3 +1,12 @@
+# custom ignores
+mujoco-3.2.3/bin
+mujoco-3.2.3/include
+mujoco-3.2.3/lib
+mujoco-3.2.3/model
+mujoco-3.2.3/sample
+mujoco-3.2.3/simulate
+
+
 # Don't commit binaries
 *.a
 *.asm
