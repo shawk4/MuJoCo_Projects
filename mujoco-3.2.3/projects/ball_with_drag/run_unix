@@ -1,0 +1,5 @@
+reset
+make clean
+make
+cd ../../bin && ./ball_with_drag
+# cd ../../bin && ./simulate ../projects/ball_with_drag/ball.xml
