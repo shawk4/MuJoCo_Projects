@@ -14,10 +14,11 @@
 
 
     <worldbody>
-        <geom name="floor" type="plane" size="6 4 .01" pos="0 0  0" material="grid"/>
+        <geom name="floor" type="plane" size="32 16 .01" pos="0 0  0" material="grid"/>
 
         <body name="frame" pos="0 0 .337">
             <freejoint name="root"/>
+            <camera name="follow" pos="-0.37 -2 1.5" mode="trackcom" xyaxes="0.78  -0.13 0 0.27 0.33 0.6"/>
             <geom name="chainstay_R"     type="cylinder" fromto=" 0.0     -0.02   0.0    -0.43   -0.05   0.03" size=".02" material="frame"/>
             <geom name="chainstay_L"     type="cylinder" fromto=" 0.0      0.02   0.0    -0.43    0.05   0.03" size=".02" material="frame"/>
             <geom name="chainstay_top_R" type="cylinder" fromto="-0.086   -0.01   0.374  -0.43   -0.05   0.03" size=".02" material="frame"/>
@@ -26,9 +27,6 @@
             <geom name="downtube"        type="cylinder" fromto=" 0.0      0.0    0.0     0.507   0.0    0.558" size=".02" material="frame"/>
             <geom name="toptube"         type="cylinder" fromto="-0.086    0.0    0.374   0.481   0.0    0.609" size=".02" material="frame"/>
             <geom name="headtube"        type="cylinder" fromto=" 0.469    0.0    0.633   0.520   0.0    0.532" size=".02" material="frame"/>
-            <geom name="fork_R"          type="cylinder" fromto=" 0.520   -0.04   0.532   0.817  -0.04   0.033" size=".02" material="frame"/>
-            <geom name="fork_L"          type="cylinder" fromto=" 0.520    0.04   0.532   0.817   0.04   0.033" size=".02" material="frame"/>
-            <geom name="handlebars"      type="cylinder" fromto=" 0.469   -0.33   0.633   0.469   0.33   0.633" size=".02" material="frame"/>
 
             <body name="back_wheel">
                 <joint name="back_wheel" type="hinge" axis="0 1 0" pos="-.43 0 .03"/>
@@ -37,11 +35,17 @@
 
             </body>
 
-            <body name="front_wheel" >
-                <joint name="front_wheel" type="hinge" axis="0 1 0" pos=".817 0 .033"/>
-                <geom name="wheel2" type="ellipsoid" size=".37 .03 .37" pos=".817 0 .033" material="grid_green"/>
-                <inertial pos=".817 0 .033" mass="2" diaginertia=" 0.169 0.2525 0.169"/>
-            </body> 
+            <body name="steering">
+                <joint name="steering" type="hinge" axis="0 0 1" pos="0.469 0 0.633"/>
+                <geom name="handlebars"      type="cylinder" fromto=" 0.469   -0.33   0.633   0.469   0.33   0.633" size=".02" material="frame"/>
+                <geom name="fork_R"          type="cylinder" fromto=" 0.520   -0.04   0.532   0.817  -0.04   0.033" size=".02" material="frame"/>
+                <geom name="fork_L"          type="cylinder" fromto=" 0.520    0.04   0.532   0.817   0.04   0.033" size=".02" material="frame"/>
+                <body name="front_wheel" >
+                    <joint name="front_wheel" type="hinge" axis="0 1 0" pos=".817 0 .033"/>
+                    <geom name="wheel2" type="ellipsoid" size=".37 .03 .37" pos=".817 0 .033" material="grid_green"/>
+                    <inertial pos=".817 0 .033" mass="2" diaginertia=" 0.169 0.2525 0.169"/>
+                </body> 
+            </body>
 
         </body>
     </worldbody>
