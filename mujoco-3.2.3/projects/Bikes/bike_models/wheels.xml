@@ -1,0 +1,59 @@
+<mujoco>
+      <asset>
+        <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="512" height="512"/>
+        <texture name="grid2" type="2d" builtin="checker" rgb1="1 .2 .2" rgb2=".5 .6 .7" width="231" height="231"/>
+        <texture name="grid3" type="2d" builtin="checker" rgb1=".2 1 .2" rgb2=".7 .6 .5" width="231" height="231"/>
+        <texture name="grid4" type="2d" builtin="checker" rgb1=".2 .2 1" rgb2=".2 .3 .4" width="231" height="231"/>
+        <texture name="grid5" type="2d" builtin="checker" rgb1=".2 1 1" rgb2=".2 .3 .4" width="231" height="231"/>
+
+        <material name="grid" texture="grid" texrepeat="2 2" texuniform="true" reflectance="0.2"/>
+        <material name="grid2" texture="grid2" texrepeat="2 2" texuniform="true"/>
+        <material name="grid3" texture="grid3" texrepeat="2 2" texuniform="true"/>
+        <material name="grid4" texture="grid4" texrepeat="2 2" texuniform="true"/>
+        <material name="grid5" texture="grid5" texrepeat="2 2" texuniform="true"/>
+
+        <material name="frame" rgba="0.8 0.6 0.4 1"/>
+    </asset>
+
+    <visual>
+        <global offwidth="1280"/>
+    </visual>
+
+    <worldbody>
+        <light pos="0 0 1"/>
+        <camera name="top" pos="2 -4 2" xyaxes="2 0.0 0 0.27 0.33 0.9"/>
+        <geom name="floor" type="plane" size="4 4 .01" pos="0 0  0" material="grid"/>
+        <geom name="ramp" type="plane" size="1 2 .01" pos=".75 0  .35" material="grid2" zaxis=".3 0 1" />
+
+        <!-- red Wheel -->
+        <body name="wheel1" >
+            <freejoint name="root1"/>
+            <geom name="wheel1" type="ellipsoid" size=".37 .03 .37" pos="0 0.4 1.01" material="grid2" mass="2"/>
+        </body>
+
+        <!-- green Hoop -->
+        <body name="wheel2" >
+            <freejoint name="root2"/>
+            <geom name="wheel2" type="ellipsoid" size=".37 .03 .37" pos="0 0 1.01" material="grid3"/>
+            <inertial pos="0 0 1.01" mass="2" diaginertia="0.1369 0.2738 0.1369"/>
+        </body>
+
+        <!--blue Ring -->
+        <body name="wheel3" >
+            <freejoint name="root3"/>
+            <geom name="wheel3" type="ellipsoid" size=".37 .03 .37" pos="0 -0.4 1.01" material="grid4"/>
+            <inertial pos="0 -0.4 1.01" mass="2" diaginertia=" 0.169 0.2525 0.169"/>
+        </body>
+
+        <!-- teal cylinder -->
+        
+        <body name="wheel4" >
+            <freejoint name="root4"/>
+            <geom name="wheel4" type="ellipsoid" size=".37 .03 .37" pos="0 -0.6 1.01" material="grid5"/>
+            <inertial pos="0 -0.6 1.01" mass="2" diaginertia="0.0686 0.1369 0.0686"/>
+        </body>
+
+
+
+    </worldbody>
+</mujoco>

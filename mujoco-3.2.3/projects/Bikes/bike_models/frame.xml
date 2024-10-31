@@ -1,0 +1,48 @@
+<mujoco>
+      <asset>
+        <texture name="grid" type="2d" builtin="checker" rgb1=".1 .2 .3" rgb2=".2 .3 .4" width="512" height="512"/>
+        <texture name="grid_blue" type="2d" builtin="checker" rgb1=".2 .2 1" rgb2=".2 .3 .4" width="512" height="512"/>
+        <texture name="grid_green" type="2d" builtin="checker" rgb1=".2 1 .1" rgb2=".2 .3 .4" width="231" height="231"/>
+
+
+        <material name="grid" texture="grid" texrepeat="2 2" texuniform="true" reflectance="0.2"/>
+        <material name="grid_blue" texture="grid_blue" texrepeat="2 2" texuniform="true"/>
+        <material name="grid_green" texture="grid_green" texrepeat="2 2" texuniform="true"/>
+
+        <material name="frame" rgba="0.8 0.6 0.4 1"/>
+    </asset>
+
+
+    <worldbody>
+        <geom name="floor" type="plane" size="6 4 .01" pos="0 0  0" material="grid"/>
+
+        <body name="frame" pos="0 0 .337">
+            <freejoint name="root"/>
+            <geom name="chainstay_R" type="cylinder" fromto="0 -.02 0 -.43 -.05 .03" size=".02" material="frame"/>
+            <geom name="chainstay_L" type="cylinder" fromto="0  .02 0 -.43  .05 .03" size=".02" material="frame"/>
+            <geom name="chainstay_top_R" type="cylinder" fromto="-.086 -.01 .374 -.43 -.05 .03" size=".02" material="frame"/>
+            <geom name="chainstay_top_L" type="cylinder" fromto="-.086  .01 .374 -.43  .05 .03" size=".02" material="frame"/>
+            <geom name="seattube" type="cylinder" fromto="-.096 .01 .412 0 0 0" size=".02" material="frame"/>
+            <geom name="downtube" type="cylinder" fromto="0 0 0 .507 0 .558" size=".02" material="frame"/>
+            <geom name="toptube"  type="cylinder" fromto="-.086 0 .374 .481 0 .609" size=".02" material="frame"/>
+            <geom name="headtube"  type="cylinder" fromto=".469 0 .633 .520 0 .532" size=".02" material="frame"/>
+            <geom name="fork_R"      type="cylinder" fromto=".520 -.04 .532 .817 -.04 .033" size=".02" material="frame"/>
+            <geom name="fork_L"      type="cylinder" fromto=".520  .04 .532 .817  .04 .033" size=".02" material="frame"/>
+            <geom name="handlebars"  type="cylinder" fromto=".469 -.33 .633 .469 .33 .633" size=".02" material="frame"/>
+
+            <body name="back_wheel">
+                <joint name="back_wheel" axis="0 1 0"/>
+                <geom name="wheel1" type="ellipsoid" size=".37 .03 .37" pos="-.43 0 .03" material="grid_blue" />
+                <inertial pos="-.43 0 .03" mass="2" diaginertia=" 0.169 0.2525 0.169"/>
+
+            </body>
+
+            <body name="front_wheel" >
+                <joint name="front_wheel" axis="0 1 0"/>
+                <geom name="wheel2" type="ellipsoid" size=".37 .03 .37" pos=".817 0 .033" material="grid_green"/>
+                <inertial pos=".817 0 .033" mass="2" diaginertia=" 0.169 0.2525 0.169"/>
+            </body> 
+
+        </body>
+    </worldbody>
+</mujoco>
